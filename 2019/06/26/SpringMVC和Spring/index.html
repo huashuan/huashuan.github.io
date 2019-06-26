@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/6 | 陈卫华 blog</title>
+  <title>陈卫华 blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力努力再努力">
+  <meta name="description" content="SpringMVC和Spring 1. 为什么使用Spring ? ​    1). 方便解耦，简化开发 ​         通过Spring提供的IoC容器，可以将对象之间的依赖关系交由Spring进行控制，避免硬编码所造成的过度程序耦合。 ​    2). AOP编程的支持 ​         通过Spring提供的AOP功能，方便进行面向切面的编程，如性能监测、事务管理、日志记录等。 ​">
 <meta name="keywords" content="Java、Python、前端">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:title" content="陈卫华 blog">
-<meta property="og:url" content="http://yoursite.com/archives/2019/06/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/06/26/SpringMVC和Spring/index.html">
 <meta property="og:site_name" content="陈卫华 blog">
-<meta property="og:description" content="努力努力再努力">
+<meta property="og:description" content="SpringMVC和Spring 1. 为什么使用Spring ? ​    1). 方便解耦，简化开发 ​         通过Spring提供的IoC容器，可以将对象之间的依赖关系交由Spring进行控制，避免硬编码所造成的过度程序耦合。 ​    2). AOP编程的支持 ​         通过Spring提供的AOP功能，方便进行面向切面的编程，如性能监测、事务管理、日志记录等。 ​">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-26T08:20:50.607Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="陈卫华 blog">
-<meta name="twitter:description" content="努力努力再努力">
+<meta name="twitter:description" content="SpringMVC和Spring 1. 为什么使用Spring ? ​    1). 方便解耦，简化开发 ​         通过Spring提供的IoC容器，可以将对象之间的依赖关系交由Spring进行控制，避免硬编码所造成的过度程序耦合。 ​    2). AOP编程的支持 ​         通过Spring提供的AOP功能，方便进行面向切面的编程，如性能监测、事务管理、日志记录等。 ​">
   
     <link rel="alternative" href="/atom.xml" title="陈卫华 blog" type="application/atom+xml">
   
@@ -164,85 +165,213 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-SpringMVC和Spring" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SpringMVC和Spring</p>
+<p><strong>1. 为什么使用Spring ?</strong></p>
+<p>​    1). 方便解耦，简化开发</p>
+<p>​         通过Spring提供的IoC容器，可以将对象之间的依赖关系交由Spring进行控制，避免硬编码所造成的过度程序耦合。</p>
+<p>​    2). AOP编程的支持</p>
+<p>​         通过Spring提供的AOP功能，方便进行面向切面的编程，如性能监测、事务管理、日志记录等。</p>
+<p>​    3). 声明式事务的支持</p>
+<p>​    4). 方便集成各种优秀框架</p>
+<p>​    5). 降低Java EE API的使用难度</p>
+<p>​         如对JDBC，JavaMail，远程调用等提供了简便封装</p>
+<p><strong>2. 什么是IoC，为什使用IoC ?</strong></p>
+<p>​    IoC全称Iversion of Controller，控制反转。</p>
+<p>​    <strong>这概念是说你不用创建对象，而只需要描述它如何被创建。</strong>你不在代码里直接组装你的组件和服务，但是要在配置文件里描述哪些组件需要哪些服务，之后一个容器（IOC容器）负责把他们组装起来。</p>
+<p>​    它能指导我们如何设计出松耦合、更优良的程序。</p>
+<p><strong>3. 什么是AOP，为什么使用AOP ?</strong></p>
+<p>​    AOP全称：Aspect-Oriented Programming，面向切面编程。</p>
+<p>​     AOP，面向切面编程，就是把可重用的功能提取出来，然后将这些通用功能在合适的时候织入到应用程序中，比如<strong>事务管理</strong>、<strong>权限控制</strong>、<strong>日志记录</strong>、性能统计等。</p>
+<p>​    <strong>AOP并没有帮助我们解决任何新的问题，它只是提供了一种更好的办法，能够用更少的工作量来解决现有的一些问题，使得系统更加健壮，可维护性更好。</strong></p>
+<p><strong>4. 什么是Spring的事务管理？</strong></p>
+<p>​    事务就是对一系列的数据库操作（比如插入多条数据）进行统一的提交或回滚操作，如果插入成功，那么一起成功，如果中间有一条出现异常，那么回滚之前的所有操作。这样可以防止出现脏数据，防止数据库数据出现问题。</p>
+<p>​    开发中为了避免这种情况一般都会进行事务管理。</p>
+<p>​    <strong>Spring的声明式事务通常是指在配置文件中对事务进行配置声明</strong>，其中包括了很多声明属性，它是通过Spring Proxy帮你做代理，自己不用额外的写代码，只要在Spring配置文件中声明即可；通常用在数据库的操作里面；</p>
+<p>​    <strong>编程式事务就是指通过硬编码的方式做事务处理</strong>，这种处理方式需要写代码，事务中的逻辑可以自己定制；可以是数据库的东东，也可以是其他的操作。</p>
+<p>​    <strong>Spring中也有自己的事务管理机制，一般是使用TransactionMananger进行管理，</strong>可以通过Spring的注入来完成此功能。</p>
+<p><strong>5. Spring框架支持以下五种bean的作用域：</strong></p>
+<p>​    <strong>singleton : 默认值，bean在每个Spring ioc 容器中只有一个实例。</strong></p>
+<p>​    prototype：一个bean的定义可以有多个实例。</p>
+<p>​    request：每次http请求都会创建一个bean，该作用域仅在基于web的Spring ApplicationContext情形下有效。 </p>
+<p>​    session：在一个HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。</p>
+<p>​    global-session：在一个全局的HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。</p>
+<p><strong>6. 什么是Spring的MVC框架？</strong></p>
+<p>​    Spring 配备构建Web 应用的全功能MVC框架。Spring可以很便捷地和其他MVC框架集成，如Struts，Spring 的MVC框架用控制反转把业务对象和控制逻辑清晰地隔离。它也允许以声明的方式把请求参数和业务对象绑定。</p>
+<p>​    spring mvc是一个基于mvc的web框架。spring mvc是spring框架的一个模块，springmvc和spring无需通过中间整合层进行整合。</p>
+<p><strong>7. 如何启用注解：</strong></p>
+<p>​    <a href="context:annotation-config/" target="_blank" rel="noopener">context:annotation-config/</a></p>
+<p>​    <strong>如果使用&lt;context:component-scan base-package=”com.tgb.web.controller.annotation”&gt;   则上面内容可以省略</strong> </p>
+<p><strong>8. Spring MVC的请求流程：</strong></p>
+<p>​    第一步：发起请求到<strong>前端控制器</strong>(DispatcherServlet)</p>
+<p>​    第二步：前端控制器请求<strong>HandlerMapping</strong>查找Handler可以根据xml配置、注解进行查找</p>
+<p>​    第三步：处理器映射器HandlerMapping向前端控制器返回<strong>Handler</strong></p>
+<p>​    第四步：前端控制器调用<strong>处理器适配器</strong>去执行Handler</p>
+<p>​    第五步：处理器适配器去执行Handler</p>
+<p>​    第六步：Handler执行完成给适配器返回<strong>ModelAndView</strong></p>
+<p>​    第七步：处理器适配器向前端控制器返回ModelAndView。ModelAndView是springmvc框架的一个底层对象，包括 Model和view</p>
+<p>​    第八步：前端控制器请求<strong>视图解析器</strong>去进行视图解析，根据逻辑视图名解析成真正的视图(jsp)</p>
+<p>​    第九步：视图解析器向前端控制器<strong>返回View</strong></p>
+<p>​    第十步：前端控制器进行<strong>视图渲染</strong>。视图渲染将模型数据(在ModelAndView对象中)填充到request域</p>
+<p>​    第十一步：前端控制器向用户响应结果</p>
+<p><strong>10. 注解的处理器映射器和适配器</strong></p>
+<p>​      spring3.1之后使用org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping注解映射器。</p>
+<p>​      在spring3.1之后使用org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter注解适配器。</p>
+<p>​      <strong>使用 mvc:annotation-driven代替上边注解映射器和注解适配器配置</strong></p>
+<p><strong>11. spring 与 mybatis整合过程</strong></p>
+<p>​      第一步：整合dao层</p>
+<p>​         mybatis和spring整合，通过spring管理mapper接口。</p>
+<p>​         使用mapper的扫描器自动扫描mapper接口在spring中进行注册。</p>
+<p>​      第二步：整合service层</p>
+<p>​         通过spring管理 service接口。</p>
+<p>​         使用配置方式将service接口配置在spring配置文件中。</p>
+<p>​         实现事务控制。</p>
+<p>​      第三步：整合springmvc</p>
+<p>​         由于springmvc是spring的模块，不需要整合。</p>
+<p>​      <strong>主要配置有：</strong></p>
+<p>​      1). mybatis配置文件sqlMapConfig.xml配置别名自动扫描<strong>(实体类)</strong></p>
+<p>​      2). mapper扫描器<strong>(接口，数据库访问接口)</strong></p>
+<p>​      3). 数据库连接池配置</p>
+<p>​      4). 声明式事务配置</p>
+<p>​      5). 启用注解扫描：&lt;context:component-scan base-package=”cn.itcast.ssm.controller”&gt;</p>
+<p>​      6). 配置注解映射器和适配器： <a href="mvc:annotation-driven" target="_blank" rel="noopener">mvc:annotation-driven</a></p>
+<p>​      7). 视图解析器：<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"></bean></p>
+<p>​      8). 配置控制类： DispatcherServlet前端控制器</p>
+<p>​      9). 配置spring配置文件加载类：ClassLoadListener</p>
+<p><strong>12.</strong> 前端控制器从上边的文件中加载处理映射器、适配器、视图解析器等组件，如果不在springmvc.xml中配置，使用默认加载的 DispatcherSerlvet.properties。 </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/26/SpringMVC和Spring/" class="archive-article-date">
-  	<time datetime="2019-06-26T08:01:35.381Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-26</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/26/SpringMVC和Spring/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/25/面试题/" class="archive-article-date">
-  	<time datetime="2019-06-24T16:24:33.983Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-25</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/24/hello-world/" class="archive-article-date">
-  	<time datetime="2019-06-24T09:04:37.206Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-24</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+  
+    <a href="/2019/06/25/面试题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -265,8 +394,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

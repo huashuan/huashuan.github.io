@@ -166,15 +166,243 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SpringMVC和Spring" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SpringMVC和Spring</p>
+<p><strong>1. 为什么使用Spring ?</strong></p>
+<p>​    1). 方便解耦，简化开发</p>
+<p>​         通过Spring提供的IoC容器，可以将对象之间的依赖关系交由Spring进行控制，避免硬编码所造成的过度程序耦合。</p>
+<p>​    2). AOP编程的支持</p>
+<p>​         通过Spring提供的AOP功能，方便进行面向切面的编程，如性能监测、事务管理、日志记录等。</p>
+<p>​    3). 声明式事务的支持</p>
+<p>​    4). 方便集成各种优秀框架</p>
+<p>​    5). 降低Java EE API的使用难度</p>
+<p>​         如对JDBC，JavaMail，远程调用等提供了简便封装</p>
+<p><strong>2. 什么是IoC，为什使用IoC ?</strong></p>
+<p>​    IoC全称Iversion of Controller，控制反转。</p>
+<p>​    <strong>这概念是说你不用创建对象，而只需要描述它如何被创建。</strong>你不在代码里直接组装你的组件和服务，但是要在配置文件里描述哪些组件需要哪些服务，之后一个容器（IOC容器）负责把他们组装起来。</p>
+<p>​    它能指导我们如何设计出松耦合、更优良的程序。</p>
+<p><strong>3. 什么是AOP，为什么使用AOP ?</strong></p>
+<p>​    AOP全称：Aspect-Oriented Programming，面向切面编程。</p>
+<p>​     AOP，面向切面编程，就是把可重用的功能提取出来，然后将这些通用功能在合适的时候织入到应用程序中，比如<strong>事务管理</strong>、<strong>权限控制</strong>、<strong>日志记录</strong>、性能统计等。</p>
+<p>​    <strong>AOP并没有帮助我们解决任何新的问题，它只是提供了一种更好的办法，能够用更少的工作量来解决现有的一些问题，使得系统更加健壮，可维护性更好。</strong></p>
+<p><strong>4. 什么是Spring的事务管理？</strong></p>
+<p>​    事务就是对一系列的数据库操作（比如插入多条数据）进行统一的提交或回滚操作，如果插入成功，那么一起成功，如果中间有一条出现异常，那么回滚之前的所有操作。这样可以防止出现脏数据，防止数据库数据出现问题。</p>
+<p>​    开发中为了避免这种情况一般都会进行事务管理。</p>
+<p>​    <strong>Spring的声明式事务通常是指在配置文件中对事务进行配置声明</strong>，其中包括了很多声明属性，它是通过Spring Proxy帮你做代理，自己不用额外的写代码，只要在Spring配置文件中声明即可；通常用在数据库的操作里面；</p>
+<p>​    <strong>编程式事务就是指通过硬编码的方式做事务处理</strong>，这种处理方式需要写代码，事务中的逻辑可以自己定制；可以是数据库的东东，也可以是其他的操作。</p>
+<p>​    <strong>Spring中也有自己的事务管理机制，一般是使用TransactionMananger进行管理，</strong>可以通过Spring的注入来完成此功能。</p>
+<p><strong>5. Spring框架支持以下五种bean的作用域：</strong></p>
+<p>​    <strong>singleton : 默认值，bean在每个Spring ioc 容器中只有一个实例。</strong></p>
+<p>​    prototype：一个bean的定义可以有多个实例。</p>
+<p>​    request：每次http请求都会创建一个bean，该作用域仅在基于web的Spring ApplicationContext情形下有效。 </p>
+<p>​    session：在一个HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。</p>
+<p>​    global-session：在一个全局的HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。</p>
+<p><strong>6. 什么是Spring的MVC框架？</strong></p>
+<p>​    Spring 配备构建Web 应用的全功能MVC框架。Spring可以很便捷地和其他MVC框架集成，如Struts，Spring 的MVC框架用控制反转把业务对象和控制逻辑清晰地隔离。它也允许以声明的方式把请求参数和业务对象绑定。</p>
+<p>​    spring mvc是一个基于mvc的web框架。spring mvc是spring框架的一个模块，springmvc和spring无需通过中间整合层进行整合。</p>
+<p><strong>7. 如何启用注解：</strong></p>
+<p>​    <a href="context:annotation-config/" target="_blank" rel="noopener">context:annotation-config/</a></p>
+<p>​    <strong>如果使用&lt;context:component-scan base-package=”com.tgb.web.controller.annotation”&gt;   则上面内容可以省略</strong> </p>
+<p><strong>8. Spring MVC的请求流程：</strong></p>
+<p>​    第一步：发起请求到<strong>前端控制器</strong>(DispatcherServlet)</p>
+<p>​    第二步：前端控制器请求<strong>HandlerMapping</strong>查找Handler可以根据xml配置、注解进行查找</p>
+<p>​    第三步：处理器映射器HandlerMapping向前端控制器返回<strong>Handler</strong></p>
+<p>​    第四步：前端控制器调用<strong>处理器适配器</strong>去执行Handler</p>
+<p>​    第五步：处理器适配器去执行Handler</p>
+<p>​    第六步：Handler执行完成给适配器返回<strong>ModelAndView</strong></p>
+<p>​    第七步：处理器适配器向前端控制器返回ModelAndView。ModelAndView是springmvc框架的一个底层对象，包括 Model和view</p>
+<p>​    第八步：前端控制器请求<strong>视图解析器</strong>去进行视图解析，根据逻辑视图名解析成真正的视图(jsp)</p>
+<p>​    第九步：视图解析器向前端控制器<strong>返回View</strong></p>
+<p>​    第十步：前端控制器进行<strong>视图渲染</strong>。视图渲染将模型数据(在ModelAndView对象中)填充到request域</p>
+<p>​    第十一步：前端控制器向用户响应结果</p>
+<p><strong>10. 注解的处理器映射器和适配器</strong></p>
+<p>​      spring3.1之后使用org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping注解映射器。</p>
+<p>​      在spring3.1之后使用org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter注解适配器。</p>
+<p>​      <strong>使用 mvc:annotation-driven代替上边注解映射器和注解适配器配置</strong></p>
+<p><strong>11. spring 与 mybatis整合过程</strong></p>
+<p>​      第一步：整合dao层</p>
+<p>​         mybatis和spring整合，通过spring管理mapper接口。</p>
+<p>​         使用mapper的扫描器自动扫描mapper接口在spring中进行注册。</p>
+<p>​      第二步：整合service层</p>
+<p>​         通过spring管理 service接口。</p>
+<p>​         使用配置方式将service接口配置在spring配置文件中。</p>
+<p>​         实现事务控制。</p>
+<p>​      第三步：整合springmvc</p>
+<p>​         由于springmvc是spring的模块，不需要整合。</p>
+<p>​      <strong>主要配置有：</strong></p>
+<p>​      1). mybatis配置文件sqlMapConfig.xml配置别名自动扫描<strong>(实体类)</strong></p>
+<p>​      2). mapper扫描器<strong>(接口，数据库访问接口)</strong></p>
+<p>​      3). 数据库连接池配置</p>
+<p>​      4). 声明式事务配置</p>
+<p>​      5). 启用注解扫描：&lt;context:component-scan base-package=”cn.itcast.ssm.controller”&gt;</p>
+<p>​      6). 配置注解映射器和适配器： <a href="mvc:annotation-driven" target="_blank" rel="noopener">mvc:annotation-driven</a></p>
+<p>​      7). 视图解析器：<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"></bean></p>
+<p>​      8). 配置控制类： DispatcherServlet前端控制器</p>
+<p>​      9). 配置spring配置文件加载类：ClassLoadListener</p>
+<p><strong>12.</strong> 前端控制器从上边的文件中加载处理映射器、适配器、视图解析器等组件，如果不在springmvc.xml中配置，使用默认加载的 DispatcherSerlvet.properties。 </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/26/SpringMVC和Spring/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-面试题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>1.##################</p>
-<p>###########</p>
-<h2 id="面试经过"><a href="#面试经过" class="headerlink" title="面试经过"></a>面试经过</h2><p>2.#############</p>
-<p>############</p>
+        <h2 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h2><ul>
+<li><p>1、JDK和JRE有什么区别</p>
+<ul>
+<li>JDK：Java Development Kit的简称，Java开发工具包，提供了Java的开发环境和运行环境</li>
+<li>JRE：Java Runtime Environment的简称，Java运行环境，为Java的运行提供了所需环境</li>
+<li>具体来说JDK包含了JRE，同时还包含了编译Java源码的编译器Javac，还包含了很多Java程序调试和分析的工具。简单来说：只要你需要运行Java程序，只需安装JRE就可以了，如果你需要编写Java程序，需要安装JDK。</li>
+</ul>
+</li>
+<li><p>2、==和equals的区别是什么？</p>
+<ul>
+<li>==<ul>
+<li>比较基本数据类型，比较的是两个值是否相等</li>
+<li>比较引用数据类型，比较的是否是同一块内存空间</li>
+</ul>
+</li>
+<li>equals<ul>
+<li>没有覆盖的equals方法比较的是Object类的equals方法，与==比较的相同</li>
+<li>覆盖的equals方法比较的两个对象的内容</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>3、final在Java中有什么区别</p>
+<ul>
+<li>final修饰的类叫最终类，该类不能被继承</li>
+<li>final修饰的方法不能被重写</li>
+<li>final修饰的变量叫常量，常量必须初始化，初始化之后值就不能被修改</li>
+</ul>
+</li>
+<li><p>4、Java支持的数据类型是什么？</p>
+<ul>
+<li>八种基本数据类型和引用类型<ul>
+<li>基本数据类型：<ul>
+<li>byte、short、int、long、char、boolean、float、double</li>
+</ul>
+</li>
+<li>引用类型：<ul>
+<li>数组、集合、字符串、接口、类</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>5、什么是自动拆装箱</p>
+<ul>
+<li><p>基本数据类型可以和其对应的包装类之间自动转换</p>
+</li>
+<li><p><img src="https://img.mubu.com/document_image/a10bc793-b270-4621-902a-3e518f629db3-2994163.jpg" alt="img"></p>
+</li>
+</ul>
+</li>
+<li><p>6、&amp;和&amp;&amp;的区别</p>
+<ul>
+<li>&amp; —&gt; &amp;符号左右两边的程序都会执行</li>
+<li>&amp;&amp;–&gt; 只有&amp;&amp;左边程序为true时，才会执行&amp;&amp;右边的程序</li>
+</ul>
+</li>
+<li><p>7、Java操作字符串有哪些类？它们有什么区别？</p>
+<ul>
+<li>操作字符串的类：String StringBuffer StringBuilder</li>
+<li>String声明的不可变的对象，每次操作都会生成新的String对象,然后将指针指向新的String对象</li>
+<li>StringBuffer、StingBuilder可以在原有的对象的基础上进行 操作</li>
+<li>StringBuffer线程安全 StringBuilder是非线程安全，StringBuilder的性能高于Stringabuffer</li>
+</ul>
+</li>
+<li><p>8、接口和抽象类有什么区别？</p>
+<ul>
+<li>实现：抽象类的子类使用extends来继承，接口必须使用implements来实现接口</li>
+<li>构造方法： 抽象类可以有构造方法， 接口不可以有</li>
+<li>实现数量：类可以实现很多个接口，但是只能有一个抽象类</li>
+<li>访问修饰符：接口的方法只能使用public修饰，抽象类的方法可以自定义修饰符</li>
+</ul>
+</li>
+<li><p>9、get和post区别</p>
+<ul>
+<li>get：URL传递，post：放在request body中</li>
+<li>get请求在URL是有长度限制的，post没有</li>
+<li>get比post更不安全</li>
+</ul>
+</li>
+<li><p>10.说一下熟悉的设计模式</p>
+<ul>
+<li>单例模式：保证被创建一次，节省系统开销。·工厂模式（简单工厂、抽象工厂）：解耦代码。</li>
+<li>观察者模式：定义了对象之间的一对多的依赖，这样一来，当一个对象改变时，它的所有的依赖者都会收到通知并自动更新。</li>
+<li>外观模式：提供一个统一的接口，用来访问子系统中的一群接口，外观定义了一个高层的接口，让子系统更容易使用。</li>
+<li>模版方法模式：定义了一个算法的骨架，而将一些步骤延迟到子类中，模版方法使得子类可以在不改变算法结构的情况下，重新定义算法的步骤。</li>
+<li>状态模式：允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它的类。</li>
+</ul>
+<h2 id="spring-springMVC"><a href="#spring-springMVC" class="headerlink" title="spring/springMVC"></a>spring/springMVC</h2><p>1.为什么要使用spring？</p>
+<pre><code>spring提供ioc技术，容器会帮你管理依赖的对象，从而不需要自己创建和管理依赖对象了，更轻松的实现了程序的解耦。
+spring提供了事务支持，使得事务操作变的更加方便。
+spring提供了面向切片编程，这样可以更方便的处理某一类的问题。
+更方便的框架集成，spring可以很方便的集成其他框架，比如MyBatis、hibernate等。</code></pre><p>2.解释一下什么是aop？</p>
+<pre><code>aop是面向切面编程，通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。</code></pre><p>简单来说就是统一处理某一“切面”（类）的问题的编程思想，比如统一处理日志、异常</p>
+<p>3.解释一下什么是ioc？</p>
+<pre><code>ioc:Inversionof Control（中文：控制反转）是spring的核心，对于spring框架来说，就是由spring来负责控制对象的生命周期和对象间的关系。</code></pre><p>简单来说，控制指的是当前对象对内部成员的控制权；控制反转指的是，这种控制权不由当前对象管理了，由其他（类，第三方容器）来管理。</p>
+<p>4.spring 有哪些主要模块？<br>   spring core：框架的最基础部分，提供ioc和依赖注入特性。<br>   spring context：构建于core 封装包基础上的context封装包，提供了一种框架式的对象访问方法。<br>   spring dao:Data Access Object提供了JDBC的抽象层。<br>   spring aop：提供了面向切面的编程实现，让你可以自定义拦截器、切点等。<br>   spring Web：提供了针对Web开发的集成特性，例如文件上传，利用servlet listeners 进行ioc容器初始化和针对Web         的ApplicationContext。<br>   spring Web mvc:spring中的mvc 封装包提供了Web应用的Model-View- Controller（MVC）的实现。<br>5.spring常用的注入方式有哪些？</p>
+<pre><code>setter属性注入
+构造方法注入·注解方式注入</code></pre><p>6.spring中的bean是线程安全的吗？</p>
+<pre><code>spring中的bean 默认是单例模式，spring框架并没有对单例bean进行多线程的封装处理。</code></pre><p>实际上大部分时候 spring bean无状态的（比如dao类），所有某种程度上来说bean也是安全的，但如果bean 有状态的话（比如view model对象），那就要开发者自己去保证线程安全了，最简单的就是改变bean的作用域，把“singleton”变更为“prototype”，这样请求bean相当于new Bean0了，所以就可以保证线程安全了。</p>
+<pre><code>·有状态就是有数据存储功能。</code></pre><p>​           ·无状态就是不会保存数据。<br>7.spring支持几种bean的作用域？<br>spring支持5种作用域，如下：<br>​    ·singleton:spring ioc 容器中只存在一个bean实例，bean以单例模式存在，是系统默认值；<br>​    ·prototype：每次从容器调用bean时都会创建一个新的示例，既每次getBean（）相当于执行new Bean（）操作；<br>​    ·Web环境下的作用域：<br>​            request：每次http 请求都会创建一个bean；</p>
+<p>​            session：同一个http session共享一个bean实例；</p>
+<p>​           global-session：用于portlet容器，因为每个portlet有单独的session，globalsession 提供一个全局性的http      session。</p>
+<p>8.说一下spring mvc运行流程？<br>   ·spring mvc 先将请求发送给DispatcherServlet。<br>   ·DispatcherServlet 查询一个或多个HandlerMapping，找到处理请求的Controller。<br>   ·DispatcherServlet 再把请求提交到对应的Controller。·Controller进行业务逻辑处理后，会返回一个       ModelAndView。</p>
+<pre><code>·Dispathcher 查询一个或多个ViewResolver 视图解析器，找到ModelAndView对象指定的视图对象。</code></pre><p>·视图对象负责渲染返回给客户端。<br>9.spring mvc 有哪些组件？</p>
+<pre><code>前置控制器DispatcherServlet。
+映射控制器HandlerMapping。
+处理器Controller。
+模型和视图 ModelAndView。</code></pre><p>​     视图解析器ViewResolver。</p>
+</li>
+</ul>
 
       
 
@@ -220,24 +448,10 @@
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/24/hello-world/">你好 世界</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/24/hello-world/" class="archive-article-date">
-  	<time datetime="2019-06-24T09:04:37.206Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-24</time>
-</a>
-        
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+        <hr>
+<h2 id="SpringMVC和Spring"><a href="#SpringMVC和Spring" class="headerlink" title="SpringMVC和Spring"></a>SpringMVC和Spring</h2><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
